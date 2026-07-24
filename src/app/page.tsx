@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
+import { CapabilitiesSection } from "@/components/capabilities-section";
 import { PoliciesPreview } from "@/components/policies-preview";
 
 export default function Home() {
@@ -8,6 +9,7 @@ export default function Home() {
       <Navbar />
       <main className="flex-1">
         <Hero />
+        <CapabilitiesSection />
         <PoliciesPreview />
       </main>
     </>

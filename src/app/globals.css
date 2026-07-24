@@ -14,6 +14,8 @@
   --color-paper: #ffffff;
   --color-mist: #f7f7f6;
   --color-line: #e7e6e2;
+
+  --shadow-card: 0 1px 2px rgba(10, 16, 69, 0.05), 0 12px 24px -4px rgba(10, 16, 69, 0.08);
 }
 
 @theme inline {
@@ -33,6 +35,8 @@
   --color-paper: var(--color-paper);
   --color-mist: var(--color-mist);
   --color-line: var(--color-line);
+
+  --shadow-card: var(--shadow-card);
 }
 
 html {
