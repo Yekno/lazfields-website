@@ -14,7 +14,9 @@ export const COMPANY = {
   name: "Lazfields Limited",
   tagline: "Engineering, Project Delivery and Management Consultancy",
   phone: "+44 (0) 7384 122027",
+  email: "info@lazfields.co.uk",
   address: "53 Firepool Crescent, Taunton, TA1 1AT, Somerset, England, United Kingdom",
+  registrationNumber: "11433098",
 } as const;
 
 export interface Capability {

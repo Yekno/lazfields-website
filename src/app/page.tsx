@@ -2,6 +2,7 @@ import { Navbar } from "@/components/navbar";
 import { Hero } from "@/components/hero";
 import { CapabilitiesSection } from "@/components/capabilities-section";
 import { PoliciesPreview } from "@/components/policies-preview";
+import { Footer } from "@/components/footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <CapabilitiesSection />
         <PoliciesPreview />
       </main>
+      <Footer />
     </>
   );
 }
