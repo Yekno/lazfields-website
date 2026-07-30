@@ -10,6 +10,8 @@
   --color-gold-400: #f5cf5c;
   --color-gold-600: #d9a91d;
 
+  --color-danger: #b3261e;
+
   --color-ink: #10121a;
   --color-paper: #ffffff;
   --color-mist: #f7f7f6;
@@ -30,6 +32,8 @@
   --color-gold-400: var(--color-gold-400);
   --color-gold-500: var(--color-gold-500);
   --color-gold-600: var(--color-gold-600);
+
+  --color-danger: var(--color-danger);
 
   --color-ink: var(--color-ink);
   --color-paper: var(--color-paper);

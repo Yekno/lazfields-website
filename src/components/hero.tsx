@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { SECTORS } from "@/lib/site-data";
 
 const SLIDES = [
   {
@@ -29,16 +30,6 @@ const SLIDES = [
     image: "/hero-commissioning.jpg",
   },
 ] as const;
-
-const SECTORS = [
-  "Construction",
-  "Energy",
-  "Oil & Gas",
-  "Nuclear Power",
-  "Pharmaceutical",
-  "Highways",
-  "Marine",
-];
 
 const AUTOPLAY_MS = 6500;
 

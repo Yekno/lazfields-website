@@ -19,6 +19,19 @@ export const COMPANY = {
   registrationNumber: "11433098",
 } as const;
 
+// Single source of truth for sectors — used by the hero, proof strip and About page
+// so the count can never drift between pages. Source: About brief, para 5.
+export const SECTORS = [
+  "Construction",
+  "Energy",
+  "Utilities",
+  "Oil & Gas",
+  "Nuclear Power",
+  "Pharmaceutical",
+  "Highways",
+  "Marine",
+] as const;
+
 export interface Capability {
   Icon: LucideIcon;
   title: string;
@@ -61,5 +74,106 @@ export const CAPABILITIES: Capability[] = [
     title: "Marine & Offshore Services",
     description:
       "Specialist support for marine, offshore and topside modification programmes.",
+  },
+];
+
+// Services page (§3/§4) content — keyed to CAPABILITIES by title so the icon,
+// title and base description stay single-sourced there. Slugs anchor each
+// index card (§3) to its matching depth block (§4).
+export interface ServiceDepth {
+  risk: string;
+  approach: string;
+  advantage: string;
+}
+
+export interface ServiceDetail {
+  slug: string;
+  teaser: string;
+  depth: ServiceDepth;
+  specialist?: boolean;
+}
+
+export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
+  "Project Management Consultancy": {
+    slug: "pm-consultancy",
+    teaser: "Disciplined planning, controls and reporting — visibility at every stage.",
+    depth: {
+      risk: "Plans that don't survive contact with delivery, run by a detached PMO.",
+      approach: "The team that writes the controls also builds to them, as part of an integrated EPCI team.",
+      advantage: "Controls grounded in build reality, not assumptions.",
+    },
+  },
+  "Engineering Design & Technical Consultancy": {
+    slug: "engineering-design",
+    teaser: "FEED to detailed design, with technical assurance across disciplines.",
+    depth: {
+      risk: "The classic design-to-build handoff gap, where intent gets lost in translation.",
+      approach: "Design owned by people accountable through construction and commissioning, not handed off at drawings.",
+      advantage: "Buildable design, owned to the end — not a document thrown over a wall.",
+    },
+  },
+  "Procurement & Supply Chain": {
+    slug: "procurement-supply-chain",
+    teaser: "Sourcing and delivery through a trusted UK, US, Europe and China network.",
+    depth: {
+      risk: "Sourcing delays and unvetted suppliers stalling delivery.",
+      approach: "A real, established partner network across the UK, US, Europe and China.",
+      advantage: "Trusted routes to the right materials, not spot-market gambles.",
+    },
+  },
+  "Construction & Installation": {
+    slug: "construction-installation",
+    teaser: "On-site delivery to schedule, cost and quality — safety never compromised.",
+    depth: {
+      risk: "On-site slippage on cost, quality or safety once a plan meets reality.",
+      approach: "Built by the team that planned it, senior-led on site, safety non-negotiable.",
+      advantage: "No disconnect between the plan and what happens on site.",
+    },
+  },
+  "Commissioning & Decommissioning": {
+    slug: "commissioning-decommissioning",
+    teaser: "Assets brought safely online, and supported to responsible end-of-life.",
+    depth: {
+      risk: "The highest-stakes phase of a project, handed to a team that wasn't there from the start.",
+      approach: "Full-lifecycle ownership — the team commissioning the asset knew it from concept.",
+      advantage: "Continuity that de-risks the moment it matters most.",
+    },
+  },
+  "Marine & Offshore Services": {
+    slug: "marine-offshore",
+    specialist: true,
+    teaser: "Specialist marine, offshore and topside modification support.",
+    depth: {
+      risk: "Marine and offshore work demands proven specialist experience, not generalist delivery.",
+      approach: "Grounded in real FPSO topside-modification experience carried by our founding team.",
+      advantage: "Genuinely owned specialist credibility, not a capability claimed on paper.",
+    },
+  },
+};
+
+export interface EngagementMode {
+  label: string;
+  description: string;
+  services: string[];
+}
+
+// "Three ways to engage" — client-confirmed as the firm's real commercial
+// framing (see docs/services-page.md decision #4). Order also sets the
+// section's read order: advisory-only through to full integrated delivery.
+export const ENGAGEMENT_MODES: EngagementMode[] = [
+  {
+    label: "Advise Us",
+    description: "Stay in control — we plan, manage and advise, you decide.",
+    services: ["Project Management Consultancy", "Engineering Design & Technical Consultancy"],
+  },
+  {
+    label: "Deliver for Us",
+    description: "Hand us a defined scope — we execute it to plan.",
+    services: ["Procurement & Supply Chain", "Construction & Installation"],
+  },
+  {
+    label: "End-to-End (EPCI)",
+    description: "One accountable team, start to finish — the full integrated route.",
+    services: ["Commissioning & Decommissioning", "Marine & Offshore Services"],
   },
 ];

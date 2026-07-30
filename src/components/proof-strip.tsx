@@ -14,7 +14,7 @@ interface Stat {
 const STATS: Stat[] = [
   { value: 20, suffix: "+", label: "Years of Leadership Experience" },
   { value: 6, label: "Countries Delivered Across" },
-  { value: 7, label: "Core Sectors Served" },
+  { value: 8, label: "Core Sectors Served" },
   { value: null, display: "PMP", label: "Certified Project Leadership" },
 ];
 
@@ -28,16 +28,15 @@ function useCountUp(target: number | null, active: boolean, duration = 1200) {
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    if (prefersReduced) {
-      setValue(target);
-      return;
-    }
-
+    // Reduced motion uses a zero-length "animation" so the value still lands on
+    // target — set inside the rAF callback rather than synchronously in the effect.
+    const effectiveDuration = prefersReduced ? 0 : duration;
     let raf: number;
     const start = performance.now();
 
     const tick = (now: number) => {
-      const progress = Math.min((now - start) / duration, 1);
+      const progress =
+        effectiveDuration === 0 ? 1 : Math.min((now - start) / effectiveDuration, 1);
       const eased = 1 - Math.pow(1 - progress, 3);
       setValue(Math.round(eased * target));
       if (progress < 1) raf = requestAnimationFrame(tick);
