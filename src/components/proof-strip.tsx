@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { motion, useInView } from "framer-motion";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { fadeUp, SECTION_EASE } from "@/lib/motion";
 
 interface Stat {
@@ -77,14 +77,14 @@ function StatUnit({
 }
 
 export function ProofStrip() {
-  const ref = useRef<HTMLDivElement>(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [inView, setInView] = useState(false);
 
   return (
     <motion.div
-      ref={ref}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      onViewportEnter={() => setInView(true)}
       variants={fadeUp(16)}
       transition={{ duration: 0.5, ease: SECTION_EASE }}
       className="mt-16 rounded-2xl bg-navy-900 px-6 sm:px-10"

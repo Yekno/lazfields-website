@@ -18,7 +18,7 @@ export default function AboutPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <PageHeader
           eyebrow="About Us"
           title="Complete project delivery, from concept to commissioning"

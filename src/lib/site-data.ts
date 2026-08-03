@@ -1,12 +1,25 @@
-import { ClipboardList, HardHat, PenTool, Ship, Truck, Wrench, type LucideIcon } from "lucide-react";
+import {
+  ClipboardList,
+  HardHat,
+  HeartHandshake,
+  HeartPulse,
+  PenTool,
+  ShieldCheck,
+  Ship,
+  Truck,
+  Wrench,
+  type LucideIcon,
+} from "lucide-react";
 
+// Clients & Partners is intentionally not linked yet — the client's list is
+// subject to approval/confidentiality (About brief) and no page exists until
+// real, approved content is supplied. Do not add it back with placeholder content.
 export const NAV_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Team", href: "/team" },
   { label: "Services", href: "/services" },
   { label: "Policies", href: "/policies" },
-  { label: "Clients & Partners", href: "/clients-partners" },
   { label: "Contact", href: "/contact" },
 ] as const;
 
@@ -16,6 +29,15 @@ export const COMPANY = {
   phone: "+44 (0) 7384 122027",
   email: "info@lazfields.co.uk",
   address: "53 Firepool Crescent, Taunton, TA1 1AT, Somerset, England, United Kingdom",
+  // Structured form of the address above, for JSON-LD only — keep in sync if
+  // the display string ever changes.
+  postalAddress: {
+    streetAddress: "53 Firepool Crescent",
+    addressLocality: "Taunton",
+    addressRegion: "Somerset",
+    postalCode: "TA1 1AT",
+    addressCountry: "GB",
+  },
   registrationNumber: "11433098",
 } as const;
 
@@ -43,7 +65,7 @@ export const CAPABILITIES: Capability[] = [
     Icon: ClipboardList,
     title: "Project Management Consultancy",
     description:
-      "Portfolio, programme and project controls with disciplined planning, scheduling, monitoring and reporting.",
+      "Portfolio, programme and project controls with disciplined planning, scheduling, monitoring, reporting, and risk, cost, quality and change management.",
   },
   {
     Icon: PenTool,
@@ -67,7 +89,7 @@ export const CAPABILITIES: Capability[] = [
     Icon: Wrench,
     title: "Commissioning & Decommissioning",
     description:
-      "Bringing assets safely into operation, and supporting them to responsible end-of-life.",
+      "Bringing assets safely into operation, maintaining them through life with technical support, and supporting them to responsible end-of-life.",
   },
   {
     Icon: Ship,
@@ -90,13 +112,12 @@ export interface ServiceDetail {
   slug: string;
   teaser: string;
   depth: ServiceDepth;
-  specialist?: boolean;
 }
 
 export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
   "Project Management Consultancy": {
     slug: "pm-consultancy",
-    teaser: "Disciplined planning, controls and reporting — visibility at every stage.",
+    teaser: "Planning, controls and reporting, with risk, cost, quality and change management — visibility at every stage.",
     depth: {
       risk: "Plans that don't survive contact with delivery, run by a detached PMO.",
       approach: "The team that writes the controls also builds to them, as part of an integrated EPCI team.",
@@ -132,16 +153,15 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
   },
   "Commissioning & Decommissioning": {
     slug: "commissioning-decommissioning",
-    teaser: "Assets brought safely online, and supported to responsible end-of-life.",
+    teaser: "Assets brought online, maintained through life, and supported to responsible end-of-life.",
     depth: {
       risk: "The highest-stakes phase of a project, handed to a team that wasn't there from the start.",
-      approach: "Full-lifecycle ownership — the team commissioning the asset knew it from concept.",
+      approach: "Full-lifecycle ownership — the team commissioning the asset knew it from concept, and stays on to support and maintain it through life.",
       advantage: "Continuity that de-risks the moment it matters most.",
     },
   },
   "Marine & Offshore Services": {
     slug: "marine-offshore",
-    specialist: true,
     teaser: "Specialist marine, offshore and topside modification support.",
     depth: {
       risk: "Marine and offshore work demands proven specialist experience, not generalist delivery.",
@@ -151,10 +171,20 @@ export const SERVICE_DETAILS: Record<string, ServiceDetail> = {
   },
 };
 
+export interface EngagementModeLeadElement {
+  title: string;
+  body: string;
+  steps: string[];
+}
+
 export interface EngagementMode {
   label: string;
   description: string;
   services: string[];
+  // Optional structural element rendered above a mode's service cards —
+  // used only where the mode needs to express something the two cards
+  // beneath it can't carry on their own (see docs RI-1).
+  leadElement?: EngagementModeLeadElement;
 }
 
 // "Three ways to engage" — client-confirmed as the firm's real commercial
@@ -173,7 +203,76 @@ export const ENGAGEMENT_MODES: EngagementMode[] = [
   },
   {
     label: "End-to-End (EPCI)",
-    description: "One accountable team, start to finish — the full integrated route.",
+    description: "The final phase of one continuous delivery route — commissioning, decommissioning and specialist marine work.",
     services: ["Commissioning & Decommissioning", "Marine & Offshore Services"],
+    leadElement: {
+      title: "The Integrated Route",
+      body: "One team runs the entire path — engineering, procurement, construction and installation — then stays on through commissioning and, where relevant, specialist marine and offshore work.",
+      steps: ["Engineering", "Procurement", "Construction", "Installation"],
+    },
+  },
+];
+
+// Single source of truth for founding leadership — used by the About page's
+// condensed preview (`bio`) and the full Team page (`fullBio`, where available).
+// Source: About Us brief (revised 19.07.26). Do not invent detail for Okolie
+// beyond the brief's own "15+ years" line — a fuller bio is client-supplied.
+export interface Leader {
+  initials: string;
+  name: string;
+  role: string;
+  bio: string;
+  fullBio?: string[];
+}
+
+export const LEADERS: Leader[] = [
+  {
+    initials: "IB",
+    name: "Engr. Ian I. Banks",
+    role: "Founder",
+    bio: "20+ years in portfolio, programme and project management, project controls and engineering. His work spans FPSO topside modifications, nuclear power, aviation and aerospace defence, pharmaceutical, utilities and construction — delivered across Nigeria, the UK, the US, Malaysia, Singapore and South Korea. PMP-certified by the Project Management Institute.",
+    fullBio: [
+      "Engr. Ian I. Banks has more than 20 years of experience in portfolio, programme and project management; project planning and scheduling; project controls and monitoring; and project engineering. He has a strong record of developing strategic procedures, project plans and delivery schedules that support the successful and timely completion of large-scale projects.",
+      "His experience spans engineering projects involving topside modifications to Floating Production, Storage and Offloading (FPSO) facilities, including new production facilities and export-metering systems. He has also worked across the nuclear power, aviation and aerospace defence, pharmaceutical, utilities and construction sectors.",
+      "Engr. Banks has supported projects through tendering, Front-End Engineering Design (FEED), detailed engineering, procurement and construction. He combines technical knowledge with strong commercial awareness and focuses on improving organisational value, sustainable profitability and long-term growth.",
+      "His strengths include developing and re-engineering project processes to improve efficiency, managing stakeholders, gathering business requirements, and creating practical procedures and systems that support effective project delivery.",
+      "He has delivered engineering and project management services across Nigeria, the United Kingdom, the United States, Malaysia, Singapore and South Korea. His responsibilities have included engineering, modelling, design, and the development and review of Process, Piping and Instrumentation Diagrams (P&IDs).",
+      "Engr. Banks holds a bachelor's degree in Marine Engineering from Rivers State University of Science and Technology, Port Harcourt; a further bachelor's degree in Engineering Business Management from Coventry University, United Kingdom; and a master's degree in Engineering Management from Arden University, United Kingdom. He is a Project Management Professional (PMP), certified by the Project Management Institute, and a member of the Nigerian Society of Engineers. He has also completed a range of leadership, management and specialist training programmes in the United Kingdom and the United States.",
+    ],
+  },
+  {
+    initials: "OO",
+    name: "Dr Obiageli Okolie, PhD",
+    role: "Founding Member",
+    bio: "More than 15 years of cumulative professional experience.",
+  },
+];
+
+// Single source of truth for policy areas — used by the Home preview and the
+// full Policies page. Source: About Us brief (revised 19.07.26) §Policies.
+export interface Policy {
+  Icon: LucideIcon;
+  title: string;
+  description: string;
+}
+
+export const POLICIES: Policy[] = [
+  {
+    Icon: HeartHandshake,
+    title: "Corporate Social Responsibility",
+    description:
+      "Investing in the communities where we operate and building positive, lasting relationships beyond the project lifecycle.",
+  },
+  {
+    Icon: HeartPulse,
+    title: "Fitness to Work",
+    description:
+      "Protecting the health and wellbeing of every employee, contractor and site visitor across all our operations.",
+  },
+  {
+    Icon: ShieldCheck,
+    title: "Safety, Health, Environment & Quality",
+    description:
+      "Upholding rigorous SHEQ standards on every project, with no compromise on people or the environment.",
   },
 ];

@@ -31,6 +31,7 @@ export function PageHeader({ eyebrow, title, description, backgroundImage }: Pag
             alt=""
             fill
             priority
+            sizes="100vw"
             className="absolute inset-0 -z-20 object-cover grayscale contrast-[1.05]"
           />
           <div

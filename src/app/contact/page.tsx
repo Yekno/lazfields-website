@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <PageHeader
           eyebrow="Contact"
           title="Talk to the team who'll deliver your project"

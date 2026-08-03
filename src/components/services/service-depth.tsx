@@ -49,7 +49,7 @@ export function ServiceDepth() {
                     <Icon size={18} strokeWidth={1.75} aria-hidden="true" className="text-gold-500" />
                   </div>
                   <div>
-                    <span aria-hidden="true" className="block text-xs font-medium tabular-nums text-ink/30">
+                    <span aria-hidden="true" className="block text-xs font-medium tabular-nums text-ink/45">
                       {number}
                     </span>
                     <h3 className="font-display text-lg font-bold leading-snug text-ink">{title}</h3>
@@ -58,20 +58,20 @@ export function ServiceDepth() {
 
                 <dl className="mt-5 grid gap-5 sm:grid-cols-3 lg:mt-0">
                   <div>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/50">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/60">
                       The Risk
                     </dt>
                     <dd className="mt-1.5 text-sm leading-relaxed text-ink/70">{detail.depth.risk}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/50">
+                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/60">
                       Our Approach
                     </dt>
                     <dd className="mt-1.5 text-sm leading-relaxed text-ink/70">{detail.depth.approach}</dd>
                   </div>
                   <div>
-                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/50">
-                      Continuity Advantage
+                    <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-ink/60">
+                      The Advantage
                     </dt>
                     <dd className="mt-1.5 text-sm leading-relaxed text-ink/70">{detail.depth.advantage}</dd>
                   </div>

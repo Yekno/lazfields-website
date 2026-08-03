@@ -34,6 +34,7 @@ export function HowWeRun() {
         src="/hero-pm.jpg"
         alt=""
         fill
+        sizes="100vw"
         className="absolute inset-0 -z-20 object-cover grayscale contrast-[1.05]"
       />
       <div
@@ -80,7 +81,7 @@ export function HowWeRun() {
               transition={{ duration: 0.5, delay: i * 0.06, ease: SECTION_EASE }}
               className="rounded-xl border border-white/15 p-6"
             >
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gold-500 font-display text-xs font-bold tabular-nums text-navy-950">
+              <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-gold-500 font-display text-xs font-bold tabular-nums text-navy-950">
                 {i + 1}
               </span>
               <h3 className="mt-3 font-display text-base font-bold leading-snug text-white">

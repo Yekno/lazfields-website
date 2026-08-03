@@ -76,6 +76,7 @@ export function Hero() {
                   alt={s.tag}
                   fill
                   priority={i === 0}
+                  sizes="100vw"
                   className="object-cover grayscale contrast-[1.05]"
                 />
               </motion.div>
@@ -138,7 +139,7 @@ export function Hero() {
           </div>
 
           <div className="mt-8 flex items-center gap-4">
-            <span className="text-xs font-medium tabular-nums text-white/50">
+            <span className="text-xs font-medium tabular-nums text-white/60">
               0{index + 1} / 0{SLIDES.length}
             </span>
             <div className="flex gap-2">

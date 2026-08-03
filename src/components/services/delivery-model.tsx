@@ -5,16 +5,16 @@ import { fadeUp, SECTION_EASE } from "@/lib/motion";
 
 const PROMISES = [
   {
-    lead: "One accountable team",
-    body: "From first concept to final commissioning, the same team stays responsible throughout.",
+    lead: "One team, one roof",
+    body: "The same team plans, procures, builds and commissions — one accountable owner, concept to handover.",
   },
   {
-    lead: "Senior people, hands-on",
-    body: "The people who plan your project are the people who deliver it.",
+    lead: "Senior professionals, not delegated",
+    body: "Senior people stay directly engaged in delivery; your project is never passed down to a junior team once the plan is set.",
   },
   {
-    lead: "EPCI and PM, one roof",
-    body: "Engineering, procurement, construction and project management — under a single accountable team, with no handoffs.",
+    lead: "Cross-sector depth",
+    body: "Delivery across construction, energy, oil & gas, nuclear, pharmaceutical, utilities, highways and marine work — not a single-sector specialist.",
   },
   {
     lead: "Disciplined controls",
@@ -24,7 +24,7 @@ const PROMISES = [
 
 export function DeliveryModel() {
   return (
-    <section aria-labelledby="delivery-model-heading" className="bg-paper py-20 sm:py-28">
+    <section aria-labelledby="delivery-model-heading" className="bg-mist py-20 sm:py-28">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div
           initial="hidden"

@@ -13,7 +13,7 @@ import { CAPABILITIES, COMPANY } from "@/lib/site-data";
 export const metadata: Metadata = {
   title: "Services | Lazfields Limited",
   description:
-    "Engineering, Procurement, Construction & Installation and project management consultancy — one accountable, senior-led team delivering across the full project life cycle.",
+    "EPCI and project management consultancy — engineering, procurement, construction, installation, commissioning and marine services, delivered by one senior-led team.",
 };
 
 export default function ServicesPage() {
@@ -23,7 +23,10 @@ export default function ServicesPage() {
     name: COMPANY.name,
     email: COMPANY.email,
     telephone: COMPANY.phone,
-    address: COMPANY.address,
+    address: {
+      "@type": "PostalAddress",
+      ...COMPANY.postalAddress,
+    },
     makesOffer: CAPABILITIES.map(({ title, description }) => ({
       "@type": "Offer",
       itemOffered: {
@@ -41,11 +44,11 @@ export default function ServicesPage() {
   return (
     <>
       <Navbar />
-      <main className="flex-1">
+      <main id="main-content" className="flex-1">
         <PageHeader
           eyebrow="Services"
-          title="Complete project delivery, engineered as one integrated capability"
-          description="Engineering, procurement, construction and project management consultancy — delivered by one accountable, senior-led team, with no handoffs across the lifecycle."
+          title="EPCI and project management, without the handoffs"
+          description="Engineering, procurement, construction and installation, with project management consultancy that can be engaged in its own right — all led by senior professionals across the full project lifecycle."
           backgroundImage="/hero-epci.jpg"
         />
         <DeliveryModel />

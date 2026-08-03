@@ -45,8 +45,31 @@ export function ServiceIndex() {
               variants={fadeUp(16)}
               transition={{ duration: 0.5, delay: modeIndex * 0.06, ease: SECTION_EASE }}
             >
-              <h3 className="font-display text-lg font-bold text-ink">{mode.label}</h3>
-              <p className="mt-1 text-sm leading-relaxed text-ink/60">{mode.description}</p>
+              <h3 className="font-display text-2xl font-bold text-ink">{mode.label}</h3>
+              <p className="mt-1.5 text-sm leading-relaxed text-ink/60">{mode.description}</p>
+
+              {mode.leadElement && (
+                <div className="mt-6 rounded-xl border border-line p-6 sm:p-8">
+                  <h4 className="font-display text-base font-bold text-ink">
+                    {mode.leadElement.title}
+                  </h4>
+                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink/70">
+                    {mode.leadElement.body}
+                  </p>
+                  <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
+                    {mode.leadElement.steps.map((step, i, steps) => (
+                      <div key={step} className="flex items-center gap-3">
+                        <span className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-700">
+                          {step}
+                        </span>
+                        {i < steps.length - 1 && (
+                          <span aria-hidden="true" className="h-px w-4 bg-gold-500/60" />
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
 
               <ul className="mt-6 grid gap-6 sm:grid-cols-2">
                 {mode.services.map((title) => {
@@ -63,20 +86,13 @@ export function ServiceIndex() {
                     <li key={title}>
                       <a
                         href={`#service-${detail.slug}`}
-                        className={`group relative flex h-full flex-col rounded-2xl p-6 transition-colors ${
-                          detail.specialist ? "bg-navy-800/80" : "bg-navy-900"
-                        } ${FOCUS_RING_GOLD}`}
+                        className={`group relative flex h-full flex-col rounded-2xl bg-navy-900 p-6 transition-colors hover:bg-navy-800 focus-visible:bg-navy-800 ${FOCUS_RING_GOLD}`}
                       >
-                        {detail.specialist && (
-                          <span className="mb-3 inline-block w-fit rounded-full border border-gold-500/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-gold-500/80">
-                            Specialist
-                          </span>
-                        )}
                         <div className="flex items-start justify-between">
                           <div className="flex h-11 w-11 items-center justify-center rounded-lg bg-white/10">
                             <Icon size={20} strokeWidth={1.75} aria-hidden="true" className="text-gold-500" />
                           </div>
-                          <span aria-hidden="true" className="text-xs font-medium tabular-nums text-white/30">
+                          <span aria-hidden="true" className="text-xs font-medium tabular-nums text-white/45">
                             {number}
                           </span>
                         </div>
@@ -85,11 +101,11 @@ export function ServiceIndex() {
                           {title}
                         </h4>
 
-                        <p className="mt-2 text-sm leading-relaxed text-white/70 opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
+                        <p className="mt-2 text-sm leading-relaxed text-white/70 opacity-100 transition-opacity duration-200 sm:can-hover:opacity-0 sm:can-hover:group-hover:opacity-100 sm:can-hover:group-focus-visible:opacity-100">
                           {detail.teaser}
                         </p>
 
-                        <span className="mt-4 inline-flex items-center gap-1.5 text-xs font-semibold text-gold-500 opacity-100 transition-opacity duration-200 sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
+                        <span className="mt-auto inline-flex items-center gap-1.5 pt-4 text-xs font-semibold text-gold-500">
                           See how
                           <ArrowRight size={12} aria-hidden="true" />
                         </span>

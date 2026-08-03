@@ -2,28 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, HeartHandshake, HeartPulse, ShieldCheck } from "lucide-react";
-
-const POLICIES = [
-  {
-    Icon: HeartHandshake,
-    title: "Corporate Social Responsibility",
-    description:
-      "Investing in the communities where we operate and building positive, lasting relationships beyond the project lifecycle.",
-  },
-  {
-    Icon: HeartPulse,
-    title: "Fitness to Work",
-    description:
-      "Protecting the health and wellbeing of every employee, contractor and site visitor across all our operations.",
-  },
-  {
-    Icon: ShieldCheck,
-    title: "Safety, Health, Environment & Quality",
-    description:
-      "Upholding rigorous SHEQ standards on every project, with no compromise on people or the environment.",
-  },
-] as const;
+import { ArrowRight } from "lucide-react";
+import { POLICIES } from "@/lib/site-data";
 
 export function PoliciesPreview() {
   return (

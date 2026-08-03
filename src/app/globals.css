@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+/* Prevent Tailwind's automatic source scan from reading class-like strings out
+   of documentation (e.g. code samples in docs/*.md) — those are prose, not
+   markup, and a malformed match there can break the real build. */
+@source not "../../docs";
+
+@custom-variant can-hover (@media (hover: hover) and (pointer: fine));
+
 :root {
   --color-navy-950: #050a2a;
   --color-navy-900: #0a1045;
@@ -41,10 +48,6 @@
   --color-line: var(--color-line);
 
   --shadow-card: var(--shadow-card);
-}
-
-html {
-  scroll-behavior: smooth;
 }
 
 body {
