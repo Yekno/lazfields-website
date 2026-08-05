@@ -273,3 +273,75 @@ Findings are evidence-based and independently re-derived, not inherited from the
 - **Dynamic and animated state** was read via computed styles and DOM inspection, never screenshots — per the prior review's carried-forward warning that hidden automation tabs pause `requestAnimationFrame` and `IntersectionObserver`. The discarded "6+ / 2 / 2" ProofStrip false positive was **not** re-raised.
 
 **Limits of this review, stated plainly:** reduced-motion behaviour and sub-640px rendering were **not** exercised live — the browser extension disconnected mid-session and no headless tooling was available in the project. Both are assessed by code inspection and flagged as such rather than reported as observed. Nothing in this review claims verification it does not have.
+
+---
+
+## Closeout Verification (2026-08-05)
+
+**Scope:** not a new DRB cycle. This pass closes the three items the 2026-08-01 review left open, and re-checks for regression. The 8.1 verdict and its findings stand as issued and are not re-scored.
+
+**Implementation tasks arising from this section are specified in [`services-page-closeout-brief.md`](services-page-closeout-brief.md) as CO-1 … CO-3.**
+
+### Implementation note (2026-08-05, post-closeout)
+
+CO-1 and CO-3 implemented and live-verified same day.
+
+- **CO-1.** `service-index.tsx` L59–L70: connector now leads each item after the first instead of trailing the item before it. Verified against the live edited component (not a pre-implementation harness): dangling connectors are **0** at 360/375/390/480/640/672/1024/1280px, DOM order stays E→P→C→I, and 1280px desktop offsets are unchanged (`0/141/293/453` labels, `113/265/425` rules) — pixel-identical to pre-fix.
+- **CO-3.** `navbar.tsx` L23–L26: the route-close effect replaced with the render-phase adjustment specified in the brief. `npm run lint` exits 0. Live-verified via DOM dispatch: opening the mobile menu, clicking a nav link, and navigating via browser Back all correctly toggle `aria-expanded` and unmount the panel.
+- `npx tsc --noEmit` clean; `npm run build` succeeds; all 9 routes still prerender static.
+- **CO-2 (reduced motion) is still open** — unchanged from the 2026-08-05 closeout verification above. It requires a human DevTools pass and was correctly left undone by this implementation pass.
+
+**Environment note, not a code defect:** mid-verification, the long-lived Turbopack dev server (persisting across this session's earlier background-task restarts) entered a wedged state — `next dev` returned 500 on `/services` with a Windows worker-process spawn failure (`0xc0000142`) referencing `globals.css`, a file untouched by either fix. `npm run build` succeeded on the same code moments before this occurred, confirming the fixes themselves were not the cause. Clearing `.next` and restarting the dev server resolved it. Recorded here so a future session doesn't mistake a stale dev-server crash for a regression in this change.
+
+### Open items, resolved
+
+| Item | 2026-08-01 status | Now |
+|---|---|---|
+| Remaining Issue #1 — h1/description restatement | Fixed same-day, unverified by a second pass | ✅ **Confirmed closed** — `services/page.tsx:51` carries the EPCI expansion + standalone-PM route; no handoffs restatement remains. |
+| Remaining Issue #2 — stale docs | Fixed same-day, unverified by a second pass | ✅ **Confirmed closed, both halves** — `services-page.md:69` reads mist, `:72` reads navy-900 + `hero-pm`; `services-page-revision-brief.md:6` status line closed out for Batch 4. |
+| leadElement step chain <640px | Unverified — flagged, explicitly *not* asserted as a defect | ❌ **Confirmed defect.** See below. |
+| Reduced motion | Code-inspection only | ⏸ **Still code-inspection only** — not emulable through the available tooling. See below. |
+| `npm run lint` | Certain to fail | ❌ **Still red** — `navbar.tsx:24`, `react-hooks/set-state-in-effect`. Unchanged, out of Services scope. |
+
+### New finding — leadElement connectors dangle at line ends below 673px · §3 · cosmetic
+
+The prior review's suspicion was correct, and the range is wider than "small phones".
+
+`service-index.tsx:61` wraps each step label **and its trailing connector** in one flex item inside a `flex-wrap` row. When the row wraps, the connector travels with the label that precedes it — so every wrapped line except the last ends with a 16px gold rule pointing at nothing.
+
+Measured by cloning the live row into fixed-width harnesses matching each viewport's true panel content width (`<640`: `vw−96`; `640–1023`: `vw−112`; `≥1024`: `vw−128`):
+
+| Viewport | Panel content | Lines | Dangling connectors |
+|---|---|---|---|
+| 360px | 264px | 4 | **3** |
+| 375px | 279px | 3 | **2** |
+| 390–672px | 294–560px | 2 | **1** |
+| **673px+** | 561px+ | 1 | 0 |
+
+The row occupies **560px**, so it needs a panel content width of **561px** to sit on one line; no viewport below 673px provides it. At 375px it reads as three fragments — `Engineering —` / `Procurement —` / `Construction — Installation` — which inverts RI-1's whole purpose: the panel exists to express the E→P→C→I route *structurally*, and on mobile the structure reads as a broken list.
+
+Not an accessibility defect — the connectors are `aria-hidden`, so assistive tech is unaffected, and contrast is untouched. Purely visual.
+
+**Recommended fix — leading connector.** Emit the rule *before* each item after the first, rather than after each item before the last (`service-index.tsx:61–68`). A wrapped line then opens with the continuation mark instead of closing on a dangling one. This closes the defect at **every** width with no breakpoint to tune, and it is a two-line change.
+
+**If stacking is preferred visually**, the breakpoint must be **`md:` (768px), not `sm:` (640px)** — `sm:` would leave the 640–672px band still wrapping with one dangling connector, i.e. it would not close this finding. At 767px the panel content width is 655px, comfortably clear of the 561px requirement.
+
+### Reduced motion — why it stays unverified
+
+`MotionConfig reducedMotion="user"` resolves `matchMedia('(prefers-reduced-motion: reduce)')` at hydration. The available browser tooling exposes no CDP `setEmulatedMedia`, and patching `matchMedia` after load is not honoured by an already-hydrated provider. This could not be converted from inspected to observed, and is **not** being reported as observed.
+
+One manual pass retires it: DevTools → Rendering → Emulate `prefers-reduced-motion: reduce` → reload `/services`. Expect section content to appear without vertical travel, opacity transition retained.
+
+### Regression check — clean
+
+Measured live at 1280px:
+
+- **Ground rhythm holds:** navy-900 → mist → paper → mist → navy-900 → paper → navy-900. No two adjacent content sections share a ground.
+- **Heading order valid:** 27 headings, zero level skips, exactly one `h1`, `#main-content` present.
+- No new structural defects in any of the five section components.
+
+### Methodology note
+
+Per the carried-forward warning, **no finding here derives from a screenshot** — the automation tab pauses `IntersectionObserver`, so all six `whileInView` sections render blank in captures. Everything above is computed styles and DOM geometry. The tab additionally reported `outerWidth: 0` and ignored window resizes, which is why the wrap measurement uses content-width harnesses rather than a resized viewport; the harness widths are derived from the page's own padding chain and the clone inherits the live element's class-based styles.
+
+**Harness caveat for future reuse:** responsive variants inside a cloned subtree still resolve against the *real* viewport (1280px here), not the harness width — so the technique is only valid on subtrees carrying no breakpoint-dependent classes. Confirmed for this row: neither the `flex-wrap` container, the per-step wrapper, the label `span` nor the connector `span` carries any `sm:`/`md:`/`lg:` variant, so their widths are viewport-independent and the measurement holds. The panel's own `p-6 sm:p-8` *is* breakpoint-dependent, which is why it is accounted for in the harness width rather than inherited from the clone.

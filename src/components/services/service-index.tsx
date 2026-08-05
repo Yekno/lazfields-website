@@ -57,14 +57,14 @@ export function ServiceIndex() {
                     {mode.leadElement.body}
                   </p>
                   <div className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-2">
-                    {mode.leadElement.steps.map((step, i, steps) => (
+                    {mode.leadElement.steps.map((step, i) => (
                       <div key={step} className="flex items-center gap-3">
+                        {i > 0 && (
+                          <span aria-hidden="true" className="h-px w-4 bg-gold-500/60" />
+                        )}
                         <span className="text-xs font-semibold uppercase tracking-[0.15em] text-navy-700">
                           {step}
                         </span>
-                        {i < steps.length - 1 && (
-                          <span aria-hidden="true" className="h-px w-4 bg-gold-500/60" />
-                        )}
                       </div>
                     ))}
                   </div>
