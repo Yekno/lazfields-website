@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -45,13 +46,23 @@ export function FoundingLeadership() {
               transition={{ duration: 0.5, delay: i * 0.08, ease: SECTION_EASE }}
               className="flex flex-col gap-5 rounded-xl border border-line bg-paper p-8 shadow-card sm:flex-row sm:gap-6"
             >
-              {/* Brand monogram — placeholder for a real photo, supplied by the individual */}
-              <div
-                aria-hidden="true"
-                className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy-900 font-display text-lg font-extrabold tracking-tight text-gold-500"
-              >
-                {leader.initials}
-              </div>
+              {leader.photo ? (
+                <Image
+                  src={leader.photo}
+                  alt=""
+                  width={192}
+                  height={192}
+                  className="h-16 w-16 shrink-0 rounded-full object-cover"
+                  style={{ objectPosition: leader.photoPosition ?? "center" }}
+                />
+              ) : (
+                <div
+                  aria-hidden="true"
+                  className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-navy-900 font-display text-lg font-extrabold tracking-tight text-gold-500"
+                >
+                  {leader.initials}
+                </div>
+              )}
               <div className="flex flex-col justify-center">
                 <h3 className="font-display text-lg font-bold text-ink">{leader.name}</h3>
                 <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.15em] text-navy-700">

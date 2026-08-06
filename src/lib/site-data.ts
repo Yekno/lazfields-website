@@ -215,14 +215,20 @@ export const ENGAGEMENT_MODES: EngagementMode[] = [
 
 // Single source of truth for founding leadership — used by the About page's
 // condensed preview (`bio`) and the full Team page (`fullBio`, where available).
-// Source: About Us brief (revised 19.07.26). Do not invent detail for Okolie
-// beyond the brief's own "15+ years" line — a fuller bio is client-supplied.
+// Source: About Us brief (revised 19.07.26); Okolie's role, bio and fullBio
+// updated 2026-08-05 from client-supplied content ("content of obiageli
+// okolie.docx") and headshots (photos.pdf). `photo` is optional — leaders
+// without one fall back to an initials monogram (see about/founding-leadership
+// and team/team-content).
 export interface Leader {
   initials: string;
   name: string;
   role: string;
   bio: string;
   fullBio?: string[];
+  photo?: string;
+  // Tunes object-position for photos where the face isn't centered in frame.
+  photoPosition?: string;
 }
 
 export const LEADERS: Leader[] = [
@@ -230,6 +236,7 @@ export const LEADERS: Leader[] = [
     initials: "IB",
     name: "Engr. Ian I. Banks",
     role: "Founder",
+    photo: "/headshot-ian-banks.jpg",
     bio: "20+ years in portfolio, programme and project management, project controls and engineering. His work spans FPSO topside modifications, nuclear power, aviation and aerospace defence, pharmaceutical, utilities and construction — delivered across Nigeria, the UK, the US, Malaysia, Singapore and South Korea. PMP-certified by the Project Management Institute.",
     fullBio: [
       "Engr. Ian I. Banks has more than 20 years of experience in portfolio, programme and project management; project planning and scheduling; project controls and monitoring; and project engineering. He has a strong record of developing strategic procedures, project plans and delivery schedules that support the successful and timely completion of large-scale projects.",
@@ -242,11 +249,24 @@ export const LEADERS: Leader[] = [
   },
   {
     initials: "OO",
-    name: "Dr Obiageli Okolie, PhD",
-    role: "Founding Member",
-    bio: "More than 15 years of cumulative professional experience.",
+    name: "Dr. Obiageli (Oby) Okolie, PhD",
+    role: "Director",
+    photo: "/headshot-obiageli-okolie.jpg",
+    photoPosition: "center 20%",
+    bio: "An accomplished researcher and project management professional, with a background spanning medical management and healthcare, research leadership and strategic programme delivery. A Visiting Researcher at the University of the West of England (UWE Bristol), she brings expertise in project controls, governance, stakeholder engagement and quality assurance to Lazfields' leadership.",
+    fullBio: [
+      "Dr. Oby Okolie is an accomplished researcher and a distinguished project management professional. She currently serves as a Director at Lazfields Limited and a Visiting Researcher at the University of the West of England (UWE Bristol), United Kingdom, where she leads and contributes to high-impact research projects, driving innovation, evidence-based practice, and collaborative partnerships across academia, industry, and the public sector.",
+      "With an extensive background in medical management & healthcare, research, and project leadership, Dr. Okolie has successfully managed complex projects from concept development through implementation and evaluation. She has significant expertise in project management & controls, governance, stakeholder engagement, research management, quality assurance, and strategic programme delivery. Her ability to coordinate multidisciplinary teams and translate research into practical, measurable outcomes has earned her recognition for delivering projects that create lasting value.",
+      "As Director at Lazfields Limited, Dr. Oby Okolie provides strategic leadership in project delivery, organisational development, research and innovation, and client engagement. She is passionate about delivering practical, sustainable, and client-focused solutions that help organisations achieve operational excellence and long-term success across diverse industries.",
+    ],
   },
 ];
+
+// Two Director seats the client has confirmed will be filled at a later date.
+// Rendered as muted placeholder cards on the Team page only (not About's
+// condensed preview) — real names replace these as they're confirmed; do not
+// invent names, bios or photos for these seats in the meantime.
+export const FUTURE_DIRECTOR_SEATS = 2;
 
 // Single source of truth for policy areas — used by the Home preview and the
 // full Policies page. Source: About Us brief (revised 19.07.26) §Policies.
