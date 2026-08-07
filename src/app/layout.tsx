@@ -16,7 +16,7 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: "Lazfields Limited | Engineering, Project Delivery & Management Consultancy",
   description:
-    "Lazfields Limited provides EPCI and project management consultancy across construction, energy, oil & gas, nuclear, pharmaceutical, highways and marine sectors.",
+    "Lazfields Limited provides EPCI and project management consultancy across construction, energy, utilities, oil & gas, nuclear, pharmaceutical, highways, marine and aerospace defence sectors.",
 };
 
 export default function RootLayout({

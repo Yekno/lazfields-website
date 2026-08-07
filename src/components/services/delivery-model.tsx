@@ -14,7 +14,7 @@ const PROMISES = [
   },
   {
     lead: "Cross-sector depth",
-    body: "Delivery across construction, energy, oil & gas, nuclear, pharmaceutical, utilities, highways and marine work — not a single-sector specialist.",
+    body: "Delivery across construction, energy, oil & gas, nuclear, pharmaceutical, utilities, highways, marine and aerospace defence work — not a single-sector specialist.",
   },
   {
     lead: "Disciplined controls",

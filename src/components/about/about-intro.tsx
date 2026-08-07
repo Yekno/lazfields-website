@@ -45,7 +45,7 @@ export function AboutIntro() {
               Lazfields Limited provides Engineering, Procurement, Construction and
               Installation (EPCI) services, together with project management consultancy,
               across the construction, energy, utilities, oil &amp; gas, nuclear power,
-              pharmaceutical, highways and marine sectors.
+              pharmaceutical, highways, marine and aerospace defence sectors.
             </p>
             <p>
               Our work is led by experienced founding members and delivered by skilled

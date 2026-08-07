@@ -12,7 +12,10 @@ const SLIDES = [
     tag: "EPCI Services",
     lines: ["Engineering, Procurement,", "Construction & Installation"],
     description:
-      "Full EPCI delivery across construction, energy, oil & gas, nuclear power, pharmaceutical, highways and marine sectors.",
+      // Deliberately does not enumerate sectors: the SECTORS strip sits directly
+      // beneath this slide and lists them exhaustively. The previous wording named
+      // seven of the nine, so it was both redundant and wrong.
+      "Full EPCI delivery across every sector we serve — engineering, procurement, construction and installation under one accountable team.",
     image: "/hero-epci.jpg",
   },
   {
