@@ -43,6 +43,12 @@ export const COMPANY = {
 
 // Single source of truth for sectors — used by the hero, proof strip and About page
 // so the count can never drift between pages. Source: About brief, para 5.
+//
+// "Aerospace and Defence" added 2026-08-07 from the client's supplied industry
+// list, in the client's own wording. It is not a new claim: Banks' biography
+// (LEADERS[0].bio, below) and the Services proof section both already describe
+// "aviation and aerospace defence" work — the sector strip had simply been
+// under-claiming it. Do not add further sectors without a client source.
 export const SECTORS = [
   "Construction",
   "Energy",
@@ -52,6 +58,7 @@ export const SECTORS = [
   "Pharmaceutical",
   "Highways",
   "Marine",
+  "Aerospace and Defence",
 ] as const;
 
 export interface Capability {

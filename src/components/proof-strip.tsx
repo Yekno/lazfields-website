@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { fadeUp, SECTION_EASE } from "@/lib/motion";
+import { SECTORS } from "@/lib/site-data";
 
 interface Stat {
   value: number | null;
@@ -14,7 +15,10 @@ interface Stat {
 const STATS: Stat[] = [
   { value: 20, suffix: "+", label: "Years of Leadership Experience" },
   { value: 6, label: "Countries Delivered Across" },
-  { value: 8, label: "Core Sectors Served" },
+  // Derived, not hard-coded: this figure and the hero/About sector strips must
+  // never disagree. Previously a literal 8, which silently drifted the moment
+  // SECTORS changed.
+  { value: SECTORS.length, label: "Core Sectors Served" },
   { value: null, display: "PMP", label: "Certified Project Leadership" },
 ];
 
