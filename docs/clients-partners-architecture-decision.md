@@ -136,6 +136,23 @@ Items 1–3 are the minimum. Without at least one of them, the page cannot be wh
 12. **Whether "Energy" is deliberately dropped** — it is in `SECTORS` and absent from the client's list.
 13. **Confirmation that Aerospace and Defence may be published as a served sector** — the evidence is already on the site, so this is a confirmation, not a request for new material.
 
+## 7a. Client answers received — 2026-08-07
+
+Part A was answered. **The sector model is now settled and should not be reopened.**
+
+| Question | Answer | Effect |
+|---|---|---|
+| Full wording of the two truncated labels | **Not supplied — leave the existing labels alone** | `SECTORS` keeps `"Nuclear Power"` and `"Marine"`. **The relabelling of the other eight sectors is declined, not deferred.** |
+| Is "Marine & Offshore Engineering S…" a sector or the service? | Moot — labels unchanged | `Marine` (sector) and `Marine & Offshore Services` (capability) remain distinct, as built |
+| Is "Energy" still served? | **Keep it** | No change |
+| May Aerospace and Defence be published? | **Approved** | Already live in `5ff9e69`; approval is now on record |
+
+**No code change arises from these answers** — all four confirm the state shipped in `5ff9e69` and `7c3498d`. The 2.61× label-length concern is therefore closed as well; it only ever applied to the relabel, which is no longer proposed.
+
+**Still outstanding:** Part B (§7 items 1–6). Nothing supplied. The recommendation below is unchanged.
+
+---
+
 ## 8. Recommendation
 
 # C — Do not build the page yet; request additional client information.
