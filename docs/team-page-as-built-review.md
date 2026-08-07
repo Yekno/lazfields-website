@@ -35,6 +35,8 @@ The description was rewritten in the last session and is now doing real work: *"
 
 **Observation, not a defect:** this is the only interior page whose header carries no `backgroundImage`. `/about`, `/services` and the rest use the approved grayscale-plus-scrim photo band. Flat navy is a legitimate choice for a page whose content *is* portraiture — competing photography above photographs would fight. Recorded so a future contributor doesn't "fix" it into inconsistency.
 
+> **Correction, 2026-08-06:** "the only interior page" is no longer accurate. `/policies` was added after this review and also carries a flat-navy header — but without Team's portraiture justification, which does not transfer. Tracked as F3 in [`policies-page-review.md`](policies-page-review.md). The pages that do carry the band are `/about`, `/services` and `/contact`.
+
 ### §2 — Team Content (`TeamContent`, paper, 1869px)
 
 The page's entire substance. Eyebrow 12px `navy-700` (12.91:1) → `h2` 36px (18.69:1) → intro 18px `ink/65` (5.86:1) → card list.
