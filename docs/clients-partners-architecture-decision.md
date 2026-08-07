@@ -34,7 +34,9 @@ Everything else either already exists in the site's sector model or is not a sec
 
 Note also: `SECTORS` contains **"Energy"**, which the client's list drops. Whether that is a deliberate narrowing or an oversight is unresolved and must be asked (§7).
 
-### Sector information is already spread across four surfaces, and they disagree
+### Sector information is already spread across six surfaces, and they disagree
+
+> **Correction, 2026-08-07:** this section originally recorded **four** surfaces. Implementing the Aerospace and Defence addition surfaced two more that this evaluation missed — `about-intro.tsx:47` and `services/delivery-model.tsx:17`, both prose enumerations that also omitted Utilities. The true count is **six**. All four prose surfaces were reconciled with `SECTORS` in commit `a7bf52c`; the argument below is unchanged and strengthened by the correction.
 
 This matters more than the new page question, because it is a live defect:
 
