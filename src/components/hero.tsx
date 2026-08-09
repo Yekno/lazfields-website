@@ -9,6 +9,13 @@ import { SECTORS } from "@/lib/site-data";
 
 const SLIDES = [
   {
+    tag: "Delivery Certainty",
+    lines: ["Project Management", "Consultancy"],
+    description:
+      "Portfolio, programme and project controls with disciplined planning, scheduling, monitoring and reporting.",
+    image: "/hero-pm.jpg",
+  },
+  {
     tag: "EPCI Services",
     lines: ["Engineering, Procurement,", "Construction & Installation"],
     description:
@@ -17,13 +24,6 @@ const SLIDES = [
       // seven of the nine, so it was both redundant and wrong.
       "Full EPCI delivery across every sector we serve — engineering, procurement, construction and installation under one accountable team.",
     image: "/hero-epci.jpg",
-  },
-  {
-    tag: "Delivery Certainty",
-    lines: ["Project Management", "Consultancy"],
-    description:
-      "Portfolio, programme and project controls with disciplined planning, scheduling, monitoring and reporting.",
-    image: "/hero-pm.jpg",
   },
   {
     tag: "Full Lifecycle Support",
