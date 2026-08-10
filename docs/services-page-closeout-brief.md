@@ -137,7 +137,7 @@ Stacking vertically below a breakpoint (`flex-col items-start sm:flex-row`) **do
 ## Expected
 
 - Section content appears **without vertical travel** — `fadeUp`'s `y` transform suppressed, opacity transition retained. Not a blanket kill: content still fades.
-- `ProofStrip` counters land on the true values **20+ / 6 / 8 / PMP** with no count-up animation.
+- `ProofStrip` counters land on the true values **20+ / 6 / 8** plus the stacked **PMI / APM** cell, with no count-up animation.
 - Hero (`/`) inline `y` animation and the `layoutId` dot transition are likewise damped.
 - Nothing is invisible, clipped, or stuck mid-transition at any scroll position.
 

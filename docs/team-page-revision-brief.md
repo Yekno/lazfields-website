@@ -91,7 +91,7 @@ Candidate wordings for CD: `Director — Incoming` · `Future Appointment` · `D
 
 - The role label on cards 3–4 is visually and textually distinguishable from card 2's at a glance, without reading the card body.
 - `LEADERS[1].role` remains exactly `"Director"` — unchanged.
-- Banks' label remains exactly `"Founder"` — unchanged.
+- Banks' label remains exactly `"Founder & CEO"` — unchanged. (Was `"Founder"`; the client revised the title on 2026-08-10.)
 - If Option 2 is chosen, the placeholder label computes **≥4.5:1** against `rgb(252,252,251)`, measured by canvas readback (not estimated from the class name).
 - No name, photo, or credential is invented for either empty seat.
 
@@ -184,7 +184,7 @@ The claim is not false: she is a founder who now holds a Director title. But the
 
 Adjust the `h2` and intro so they describe a founder-plus-director leadership group rather than implying both people are founding members. CD to supply wording. Constraints:
 
-- Must remain true to `site-data.ts` — Banks is `Founder`, Okolie is `Director`.
+- Must remain true to `site-data.ts` — Banks is `Founder & CEO`, Okolie is `Director`.
 - Must not reintroduce the "supported by skilled personnel" clause (see **RI-3**, same paragraph).
 - Must not duplicate `/team`'s section intro (`team-content.tsx:30–34`), which was rewritten specifically to remove cross-page duplication.
 - Keep it condensed — About's leadership block is a preview that links onward via "Meet the team", not a roster.

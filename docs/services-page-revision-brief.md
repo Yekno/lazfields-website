@@ -393,7 +393,7 @@ Re-check after each batch:
 
 - **Keyboard parity on §3 cards** — currently correct; RB-1 and RI-2 both touch those classes.
 - **Card visual uniformity** — all six must stay identical. The two-weight "Specialist" treatment was explicitly rejected by client review (`docs/services-page.md:24`) and must not reappear via hover or ground changes.
-- **`ProofStrip` count-up** — must still land on `20+`, `6`, `8`, `PMP`, including under reduced motion. RB-3 and MI-9 both touch this area.
+- **`ProofStrip` count-up** — must still land on `20+`, `6`, `8`, and the stacked `PMI` / `APM` cell, including under reduced motion. RB-3 and MI-9 both touch this area.
 - **Anchor landing geometry** — `scroll-mt-24` (96px) against a 71px navbar. Re-verify if navbar height or section padding changes.
 - **Cross-page consistency** — `PageHeader`, `ProofStrip`, `ContactCta` are shared. RB-3 is site-wide. Spot-check Home, About, Team, Policies, Contact.
 - **Contrast after any ground change** — RI-5/RI-6 move text between grounds; re-measure anything not pure white or full-strength ink.

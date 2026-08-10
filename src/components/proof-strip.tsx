@@ -8,7 +8,8 @@ import { SECTORS } from "@/lib/site-data";
 interface Stat {
   value: number | null;
   suffix?: string;
-  display?: string;
+  // An array renders as stacked lines within the one cell.
+  display?: string | string[];
   label: string;
 }
 
@@ -19,7 +20,12 @@ const STATS: Stat[] = [
   // never disagree. Previously a literal 8, which silently drifted the moment
   // SECTORS changed.
   { value: SECTORS.length, label: "Core Sectors Served" },
-  { value: null, display: "PMP", label: "Certified Project Leadership" },
+  // Two accrediting bodies share one cell so the strip stays a 4-column grid.
+  // Stacked rather than set on one line: "PMI · APM" needs 165.8px, which the
+  // cell cannot give below 1100px on desktop or below 412px on mobile, so it
+  // broke mid-value. Stacked, the widest token is "APM" at 77.9px against
+  // 96px at the narrowest supported viewport.
+  { value: null, display: ["PMI", "APM"], label: "Certified Project Management Leadership" },
 ];
 
 function useCountUp(target: number | null, active: boolean, duration = 1200) {
@@ -75,7 +81,19 @@ function StatUnit({
       <dt className="text-xs font-medium uppercase tracking-wider text-white/70">
         {stat.label}
       </dt>
-      <dd className="font-display text-3xl font-bold text-gold-500 sm:text-4xl">{display}</dd>
+      <dd className="font-display text-3xl font-bold text-gold-500 sm:text-4xl">
+        {Array.isArray(display)
+          ? display.map((line, i) => (
+              // The leading space keeps the accessible text "PMI APM" rather
+              // than "PMIAPM"; it collapses at the start of a block line, so
+              // it costs nothing visually.
+              <span key={line} className="block">
+                {i > 0 ? " " : null}
+                {line}
+              </span>
+            ))
+          : display}
+      </dd>
     </div>
   );
 }

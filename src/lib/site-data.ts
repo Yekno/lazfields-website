@@ -242,7 +242,7 @@ export const LEADERS: Leader[] = [
   {
     initials: "IB",
     name: "Engr. Ian I. Banks",
-    role: "Founder",
+    role: "Founder & CEO",
     photo: "/headshot-ian-banks.jpg",
     bio: "20+ years in portfolio, programme and project management, project controls and engineering. His work spans FPSO topside modifications, nuclear power, aviation and aerospace defence, pharmaceutical, utilities and construction — delivered across Nigeria, the UK, the US, Malaysia, Singapore and South Korea. PMP-certified by the Project Management Institute.",
     fullBio: [
