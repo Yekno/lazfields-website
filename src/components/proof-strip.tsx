@@ -74,14 +74,19 @@ function StatUnit({
 
   return (
     <div
-      className={`flex flex-col-reverse gap-1 px-2 py-6 lg:border-t-0 lg:px-8 lg:py-8 ${
-        isSecondMobileRow ? "border-t border-white/15 lg:border-t-0" : ""
+      // Was flex-col-reverse, which bottom-packs each cell independently, so a
+      // label wrapping to two lines lifted its own value above its neighbours'.
+      // Subgrid puts every value in one shared row and every label in another,
+      // so neither can drift. `self-end` keeps single-line values sitting on
+      // the same baseline as the last line of the stacked one.
+      className={`row-span-2 grid grid-rows-subgrid gap-1 px-2 py-6 lg:border-t-0 lg:px-8 lg:py-8 ${
+        isSecondMobileRow ? "mt-6 border-t border-white/15 lg:mt-0 lg:border-t-0" : ""
       }`}
     >
-      <dt className="text-xs font-medium uppercase tracking-wider text-white/70">
+      <dt className="row-start-2 text-xs font-medium uppercase tracking-wider text-white/70">
         {stat.label}
       </dt>
-      <dd className="font-display text-3xl font-bold text-gold-500 sm:text-4xl">
+      <dd className="row-start-1 self-end font-display text-3xl font-bold text-gold-500 sm:text-4xl">
         {Array.isArray(display)
           ? display.map((line, i) => (
               // The leading space keeps the accessible text "PMI APM" rather
@@ -111,7 +116,7 @@ export function ProofStrip() {
       transition={{ duration: 0.5, ease: SECTION_EASE }}
       className="mt-16 rounded-2xl bg-navy-900 px-6 sm:px-10"
     >
-      <dl className="grid grid-cols-2 gap-y-6 lg:grid-cols-4 lg:gap-y-0 lg:divide-x lg:divide-white/15">
+      <dl className="grid grid-cols-2 grid-rows-[repeat(4,auto)] gap-y-1 lg:grid-cols-4 lg:grid-rows-[auto_auto] lg:divide-x lg:divide-white/15">
         {STATS.map((stat, i) => (
           <StatUnit key={stat.label} stat={stat} active={inView} index={i} />
         ))}
