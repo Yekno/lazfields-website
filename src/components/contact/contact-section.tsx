@@ -142,8 +142,8 @@ export function ContactSection() {
 
             <div className="mt-10 space-y-3 border-t border-white/15 pt-6">
               <p className="text-sm leading-relaxed text-white/70">
-                Led by our founding team — including Engr. Ian I. Banks, PMP — your enquiry is
-                read by senior members of the team, not a call centre.
+                Led by our founding team — including Ian Banks — your enquiry is read by
+                senior members of the team, not a call centre.
               </p>
               <p className="text-sm leading-relaxed text-white/70">
                 You&apos;ll hear back directly, from the people who would deliver your project.
